@@ -466,19 +466,34 @@ footer {
 }
 
 /* Responsive */
+/* Responsive */
 @media (max-width: 768px) {
+    .container {
+        padding: 0 20px;
+    }
+
     .hero-content {
         grid-template-columns: 1fr;
         text-align: center;
+        gap: 40px;
+        padding-top: 20px;
     }
 
     .hero h1 {
         font-size: 2.5rem;
+        line-height: 1.2;
     }
 
     .hero-image-container {
         order: -1;
-        margin-bottom: 40px;
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .image-wrapper {
+        width: 280px;
+        height: 350px;
     }
 
     .cursor-glow {
@@ -489,5 +504,33 @@ footer {
     * {
         cursor: auto;
         /* Restore default cursor on mobile */
+    }
+
+    /* Reduce clustering */
+    .section-padding {
+        padding: 60px 0;
+    }
+
+    .project-grid {
+        grid-template-columns: 1fr;
+        /* Stack projects */
+        gap: 24px;
+    }
+
+    .tech-stack-preview {
+        justify-content: center;
+    }
+
+    .social-links {
+        flex-direction: column;
+        /* Stack social links */
+        gap: 16px;
+    }
+
+    .nav ul {
+        gap: 16px;
+        /* Reduce nav gap */
+        justify-content: center;
+        flex-wrap: wrap;
     }
 }
