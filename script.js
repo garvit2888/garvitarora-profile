@@ -1,62 +1,37 @@
+// Custom Cursor Glow Effect
 document.addEventListener('DOMContentLoaded', () => {
-    // Custom Cursor Glow Effect
-    const cursorGlow = document.querySelector('.cursor-glow');
+    const cursor = document.querySelector('.cursor-glow');
 
-    if (cursorGlow) {
+    // Only active on desktop
+    if (window.matchMedia("(min-width: 768px)").matches) {
         document.addEventListener('mousemove', (e) => {
-            const x = e.clientX;
-            const y = e.clientY;
-            
-            // Using transform is more performant than updating top/left
-            cursorGlow.style.left = `${x}px`;
-            cursorGlow.style.top = `${y}px`;
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // Hover effect for links and buttons
+        const interactables = document.querySelectorAll('a, button, .project-card');
+
+        interactables.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
+                cursor.style.background = 'radial-gradient(circle, rgba(0, 255, 240, 0.25), transparent 70%)';
+            });
+
+            el.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+                cursor.style.background = 'radial-gradient(circle, rgba(68, 138, 255, 0.15), transparent 70%)';
+            });
         });
     }
 
-    // Header Scroll Effect
-    const header = document.querySelector('header');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-    });
-
-    // Smooth Scrolling for Navigation Links
+    // Smooth Scrolling
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-            
-            const targetElement = document.querySelector(targetId);
-            
-            if (targetElement) {
-                targetElement.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
         });
-    });
-
-    // Simple reveal animation on scroll (Optional)
-    const observerOptions = {
-        threshold: 0.1
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
-        });
-    }, observerOptions);
-
-    document.querySelectorAll('section').forEach(section => {
-        section.classList.add('fade-in-section'); // Add CSS class for initial opacity
-        observer.observe(section);
     });
 });
