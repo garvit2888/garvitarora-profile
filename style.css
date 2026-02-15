@@ -562,10 +562,8 @@ footer {
         font-size: 2rem;
     }
 
-    /* Restore Cursor (No Glow) */
-    .cursor-glow {
-        display: none;
-    }
+    /* Restore Cursor (No Glow) - actually keep glow if user wants it, just ensure system cursor is visible */
+    /* .cursor-glow { display: none; } */
 
     * {
         cursor: auto;
