@@ -20,8 +20,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    cursor: none;
-    /* Custom cursor */
+    cursor: default;
 }
 
 body {
@@ -113,8 +112,7 @@ h4 {
 a {
     text-decoration: none;
     color: inherit;
-    cursor: none;
-    /* Custom cursor target */
+    cursor: pointer;
 }
 
 /* Header */
